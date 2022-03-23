@@ -1,4 +1,4 @@
-package com.pedrosequeira.showcase.mdb.api.entities.commons
+package com.pedrosequeira.domain.entities
 
 sealed class IOResult<out T> {
 
