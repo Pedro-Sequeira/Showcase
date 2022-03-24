@@ -28,7 +28,7 @@ data class ApiMovie(
     @Json(name = "title")
     val title: String? = null,
     @Json(name = "video")
-    val video: Boolean? = null,
+    val hasVideo: Boolean? = null,
     @Json(name = "vote_average")
     val voteAverage: Double? = null,
     @Json(name = "vote_count")

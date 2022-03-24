@@ -1,8 +1,9 @@
 package com.pedrosequeira.showcase.data
 
 import com.pedrosequeira.domain.entities.IOResult
+import com.pedrosequeira.showcase.data.entities.DataPagination
 
-internal interface MoviesRemoteDataStore {
+interface MoviesRemoteDataStore {
 
-    suspend fun getTopRatedMovies(page: Int): IOResult<Nothing>
+    suspend fun getTopRatedMovies(page: Int): IOResult<DataPagination>
 }
