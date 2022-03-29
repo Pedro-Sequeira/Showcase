@@ -1,50 +1,22 @@
 package com.pedrosequeira.showcase.data.usecases
 
-import com.pedrosequeira.domain.entities.IOResult
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.pedrosequeira.domain.entities.Movie
-import com.pedrosequeira.domain.entities.Pagination
-import com.pedrosequeira.domain.entities.map
-import com.pedrosequeira.domain.usecases.GetTopRatedMoviesUseCase
-import com.pedrosequeira.showcase.data.MoviesDataStores
-import com.pedrosequeira.showcase.data.entities.DataMovie
-import com.pedrosequeira.showcase.data.entities.DataPagination
+import com.pedrosequeira.showcase.data.paging.MoviePagingSource
+import com.pedrosequeira.showcase.domain.usecases.GetTopRatedMoviesUseCase
 import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
 
 internal class GetTopRatedMoviesUseCaseImpl @Inject constructor(
-    private val moviesDataStores: MoviesDataStores
+    private val moviePagingSource: MoviePagingSource
 ) : GetTopRatedMoviesUseCase {
 
-    override suspend fun getTopRatedMovies(): IOResult<Pagination> {
-        return moviesDataStores.remote.getTopRatedMovies().map {
-            it.toPagination()
-        }
+    override suspend fun getTopRatedMovies(): Flow<PagingData<Movie>> {
+        return Pager(
+            config = PagingConfig(pageSize = 20),
+            pagingSourceFactory = { moviePagingSource }
+        ).flow
     }
-}
-
-private fun DataPagination.toPagination(): Pagination {
-    return Pagination(
-        page = page,
-        results = results.map { it.toMovie() },
-        totalPages = totalPages,
-        totalResults = totalResults
-    )
-}
-
-private fun DataMovie.toMovie(): Movie {
-    return Movie(
-        adult = adult,
-        backdropPath = backdropPath,
-        genreIds = genreIds,
-        id = id,
-        originalLanguage = originalLanguage,
-        originalTitle = originalTitle,
-        overview = overview,
-        popularity = popularity,
-        posterPath = posterPath,
-        releaseDate = releaseDate,
-        title = title,
-        hasVideo = hasVideo,
-        voteAverage = voteAverage,
-        voteCount = voteCount
-    )
 }

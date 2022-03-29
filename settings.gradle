@@ -16,6 +16,6 @@ rootProject.name = "Showcase"
 include ':app'
 include ':mdb-api'
 include ':data'
-include ':domain'
 include ':core'
 include ':features:dashboard'
+include ':domain'

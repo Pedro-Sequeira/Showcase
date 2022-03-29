@@ -10,6 +10,8 @@ sealed class IOResult<out T> {
             val statusMessage: String,
             val success: Boolean,
             val statusCode: Int
-        )
+        ) : Error()
+
+        object NetworkUnavailable : Error()
     }
 }
