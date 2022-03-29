@@ -11,8 +11,8 @@ internal class MoviesMdbDataStore @Inject constructor(
     private val moviesEndpoint: MoviesEndpoint
 ) : MoviesRemoteDataStore {
 
-    override suspend fun getTopRatedMovies(page: Int): IOResult<DataPagination> {
-        return moviesEndpoint.getTopRatedMovies(page).map {
+    override suspend fun getTopRatedMovies(): IOResult<DataPagination> {
+        return moviesEndpoint.getTopRatedMovies(1).map {
             it.mapToDataPagination()
         }
     }

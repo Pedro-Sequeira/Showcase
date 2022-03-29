@@ -5,5 +5,5 @@ import com.pedrosequeira.showcase.data.entities.DataPagination
 
 interface MoviesRemoteDataStore {
 
-    suspend fun getTopRatedMovies(page: Int): IOResult<DataPagination>
+    suspend fun getTopRatedMovies(): IOResult<DataPagination>
 }

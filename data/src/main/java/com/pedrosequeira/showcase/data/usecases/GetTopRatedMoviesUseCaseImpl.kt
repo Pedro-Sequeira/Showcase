@@ -14,8 +14,8 @@ internal class GetTopRatedMoviesUseCaseImpl @Inject constructor(
     private val moviesDataStores: MoviesDataStores
 ) : GetTopRatedMoviesUseCase {
 
-    override suspend fun getTopRatedMovies(page: Int): IOResult<Pagination> {
-        return moviesDataStores.remote.getTopRatedMovies(page).map {
+    override suspend fun getTopRatedMovies(): IOResult<Pagination> {
+        return moviesDataStores.remote.getTopRatedMovies().map {
             it.toPagination()
         }
     }
