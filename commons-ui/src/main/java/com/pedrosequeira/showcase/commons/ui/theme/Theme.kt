@@ -1,4 +1,4 @@
-package com.pedrosequeira.showcase.ui.theme
+package com.pedrosequeira.showcase.commons.ui.theme
 
 import android.app.Activity
 import android.os.Build

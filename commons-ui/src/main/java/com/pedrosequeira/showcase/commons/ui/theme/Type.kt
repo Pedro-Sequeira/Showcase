@@ -1,4 +1,4 @@
-package com.pedrosequeira.showcase.ui.theme
+package com.pedrosequeira.showcase.commons.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
