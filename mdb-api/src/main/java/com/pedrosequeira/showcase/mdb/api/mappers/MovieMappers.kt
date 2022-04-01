@@ -7,7 +7,7 @@ import com.pedrosequeira.showcase.mdb.api.entities.movies.ApiPagination
 import com.pedrosequeira.showcase.mdb.api.orFalse
 import com.pedrosequeira.showcase.mdb.api.orZero
 
-internal fun ApiPagination.mapToDataPagination(): DataPagination {
+internal fun ApiPagination.toDataPagination(): DataPagination {
     return DataPagination(
         page = page.orZero(),
         results = results?.map { it.mapToDataMovie() }.orEmpty(),

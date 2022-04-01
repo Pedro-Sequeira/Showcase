@@ -1,7 +1,7 @@
 package com.pedrosequeira.showcase.data.mappers
 
-import com.pedrosequeira.domain.entities.Movie
 import com.pedrosequeira.showcase.data.entities.DataMovie
+import com.pedrosequeira.showcase.domain.entities.Movie
 
 internal fun DataMovie.toMovie(): Movie {
     return Movie(

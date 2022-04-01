@@ -2,9 +2,9 @@ package com.pedrosequeira.showcase.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.pedrosequeira.domain.entities.Movie
-import com.pedrosequeira.showcase.data.MoviesDataStores
+import com.pedrosequeira.showcase.data.datastores.MoviesDataStores
 import com.pedrosequeira.showcase.data.mappers.toMovie
+import com.pedrosequeira.showcase.domain.entities.Movie
 import java.io.IOException
 import java.net.HttpRetryException
 import javax.inject.Inject

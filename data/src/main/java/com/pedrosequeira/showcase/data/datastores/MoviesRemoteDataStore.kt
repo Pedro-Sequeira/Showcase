@@ -1,4 +1,4 @@
-package com.pedrosequeira.showcase.data
+package com.pedrosequeira.showcase.data.datastores
 
 import com.pedrosequeira.showcase.data.entities.DataPagination
 

@@ -1,19 +1,22 @@
 package com.pedrosequeira.showcase.dashboard
 
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import com.pedrosequeira.showcase.commons.ui.theme.ShowcaseTheme
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.items
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    ShowcaseTheme {
-        Greeting("Android")
+internal fun DashboardScreen(viewModel: DashboardViewModel = hiltViewModel()) {
+    val movies = viewModel.movies.collectAsLazyPagingItems()
+    LazyColumn() {
+        items(
+            items = movies
+        ) { movie ->
+            if (movie != null) {
+                Text(text = movie.title)
+            }
+        }
     }
 }

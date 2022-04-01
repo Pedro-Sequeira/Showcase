@@ -1,9 +1,9 @@
 package com.pedrosequeira.showcase.mdb.api.di
 
 import com.pedrosequeira.showcase.mdb.api.BuildConfig
-import com.pedrosequeira.showcase.mdb.api.MoviesService
 import com.pedrosequeira.showcase.mdb.api.addInterceptorAsFirstInChain
 import com.pedrosequeira.showcase.mdb.api.interceptor.AuthenticationInterceptor
+import com.pedrosequeira.showcase.mdb.api.service.MoviesService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,4 +1,4 @@
-package com.pedrosequeira.showcase.data
+package com.pedrosequeira.showcase.data.datastores
 
 import javax.inject.Inject
 

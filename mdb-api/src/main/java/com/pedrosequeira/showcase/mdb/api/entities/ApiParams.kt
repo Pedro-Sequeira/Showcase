@@ -1,4 +1,4 @@
-package com.pedrosequeira.showcase.mdb.api
+package com.pedrosequeira.showcase.mdb.api.entities
 
 internal object ApiParams {
 

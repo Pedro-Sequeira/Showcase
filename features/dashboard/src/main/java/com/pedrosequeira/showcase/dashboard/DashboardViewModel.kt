@@ -1,18 +1,14 @@
 package com.pedrosequeira.showcase.dashboard
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.pedrosequeira.showcase.domain.usecases.GetTopRatedMoviesUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import kotlinx.coroutines.launch
 
+@HiltViewModel
 internal class DashboardViewModel @Inject constructor(
-    private val getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase
+    getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase
 ) : ViewModel() {
 
-    internal fun getTopRatedMovies() {
-        viewModelScope.launch {
-            getTopRatedMoviesUseCase.getTopRatedMovies()
-        }
-    }
+    val movies = getTopRatedMoviesUseCase.getTopRatedMovies()
 }

@@ -41,7 +41,6 @@ android {
 dependencies {
 
     implementation(project(":data"))
-    implementation(project(":domain"))
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
