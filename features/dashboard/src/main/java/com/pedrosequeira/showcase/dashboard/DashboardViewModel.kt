@@ -6,7 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-internal class DashboardViewModel @Inject constructor(
+class DashboardViewModel @Inject constructor(
     getTopRatedMovies: GetTopRatedMovies
 ) : ViewModel() {
 

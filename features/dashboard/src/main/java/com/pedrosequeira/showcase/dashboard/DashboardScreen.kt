@@ -8,7 +8,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 
 @Composable
-internal fun DashboardScreen(viewModel: DashboardViewModel = hiltViewModel()) {
+fun DashboardScreen(viewModel: DashboardViewModel = hiltViewModel()) {
     val movies = viewModel.movies.collectAsLazyPagingItems()
     LazyColumn() {
         items(
