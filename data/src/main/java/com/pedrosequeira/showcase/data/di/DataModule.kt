@@ -1,7 +1,7 @@
 package com.pedrosequeira.showcase.data.di
 
-import com.pedrosequeira.showcase.data.usecases.GetTopRatedMoviesUseCaseImpl
-import com.pedrosequeira.showcase.domain.usecases.GetTopRatedMoviesUseCase
+import com.pedrosequeira.showcase.data.repositories.MoviesRepositoryImpl
+import com.pedrosequeira.showcase.domain.repositories.MoviesRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,7 +14,7 @@ internal abstract class DataModule {
 
     @Singleton
     @Binds
-    abstract fun provideGetTopRatedMoviesUseCase(
-        impl: GetTopRatedMoviesUseCaseImpl
-    ): GetTopRatedMoviesUseCase
+    abstract fun provideMoviesRepository(
+        impl: MoviesRepositoryImpl
+    ): MoviesRepository
 }
