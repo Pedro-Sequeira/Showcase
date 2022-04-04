@@ -1,4 +1,4 @@
-package com.pedrosequeira.showcase.core
+package com.pedrosequeira.showcase.core.dispatcher
 
 import kotlinx.coroutines.CoroutineDispatcher
 

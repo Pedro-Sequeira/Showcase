@@ -10,9 +10,11 @@ import androidx.compose.ui.Modifier
 import com.pedrosequeira.showcase.commons.ui.theme.ShowcaseTheme
 import com.pedrosequeira.showcase.dashboard.DashboardScreen
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity @Inject constructor(
+) : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -22,7 +24,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    DashboardScreen()
+                    MainScreen {
+                        DashboardScreen()
+                    }
                 }
             }
         }
