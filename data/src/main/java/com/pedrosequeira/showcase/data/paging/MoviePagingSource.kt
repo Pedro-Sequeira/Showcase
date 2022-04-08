@@ -4,6 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.pedrosequeira.showcase.data.datastores.MoviesDataStores
 import com.pedrosequeira.showcase.data.mappers.toMovie
+import com.pedrosequeira.showcase.data.repositories.MoviesRepositoryImpl.Companion.PAGE_SIZE
 import com.pedrosequeira.showcase.domain.entities.Movie
 import java.io.IOException
 import java.net.HttpRetryException
@@ -25,11 +26,21 @@ internal class MoviePagingSource @Inject constructor(
                 if (page < totalPages) pageNumber + 1 else null
             }
 
+            fun calculateItemsAfter(): Int {
+                val remainingItems = response.totalResults - (PAGE_SIZE * pageNumber)
+                return when {
+                    remainingItems < 0 -> 0
+                    else -> remainingItems % (response.totalPages * PAGE_SIZE)
+                }
+            }
+
             LoadResult.Page(
                 data = response.results.map { it.toMovie() },
                 prevKey = previousKey,
-                nextKey = nextKey
+                nextKey = nextKey,
+                itemsAfter = if (response.totalPages == 0) 0 else calculateItemsAfter()
             )
+
         } catch (exception: IOException) {
             LoadResult.Error(exception)
         } catch (exception: HttpRetryException) {

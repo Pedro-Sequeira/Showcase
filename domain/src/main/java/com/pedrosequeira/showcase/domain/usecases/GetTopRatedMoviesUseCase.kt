@@ -4,7 +4,7 @@ import androidx.paging.PagingData
 import com.pedrosequeira.showcase.domain.entities.Movie
 import kotlinx.coroutines.flow.Flow
 
-interface GetTopRatedMovies {
+interface GetTopRatedMoviesUseCase {
 
     fun getTopRatedMovies(): Flow<PagingData<Movie>>
 }

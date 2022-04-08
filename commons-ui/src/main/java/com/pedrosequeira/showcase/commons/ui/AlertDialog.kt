@@ -5,13 +5,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun ConnectionDialog(show: Boolean) {
-    if (show.not()) return
+fun AlertDialog(shouldShow: Boolean, text: String) {
+    if (shouldShow.not()) return
     AlertDialog(
         onDismissRequest = {},
         confirmButton = {},
         text = {
-            Text(text = "You have no internet connection")
+            Text(text)
         }
     )
 }

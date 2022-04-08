@@ -1,22 +1,25 @@
 package com.pedrosequeira.showcase.dashboard
 
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.Box
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.items
+import com.pedrosequeira.showcase.commons.ui.AlertDialog
+import com.pedrosequeira.showcase.dashboard.widgets.PaginatedItems
 
 @Composable
 fun DashboardScreen(viewModel: DashboardViewModel = hiltViewModel()) {
     val movies = viewModel.movies.collectAsLazyPagingItems()
-    LazyColumn() {
-        items(
-            items = movies
-        ) { movie ->
-            if (movie != null) {
-                Text(text = movie.title)
-            }
+
+    Box {
+        when (val state = handleUiState(movies)) {
+            is DashboardState.Data -> PaginatedItems(movies)
+            is DashboardState.Error -> AlertDialog(
+                shouldShow = true,
+                text = state.errorMessage
+            )
+            DashboardState.Loading -> CircularProgressIndicator()
         }
     }
 }

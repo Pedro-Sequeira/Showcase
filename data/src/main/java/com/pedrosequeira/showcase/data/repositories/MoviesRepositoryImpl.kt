@@ -15,8 +15,12 @@ internal class MoviesRepositoryImpl @Inject constructor(
 
     override fun getTopRatedMovies(): Flow<PagingData<Movie>> {
         return Pager(
-            config = PagingConfig(pageSize = 20),
+            config = PagingConfig(pageSize = PAGE_SIZE),
             pagingSourceFactory = { moviePagingSource }
         ).flow
+    }
+
+    companion object {
+        internal const val PAGE_SIZE = 20
     }
 }
