@@ -43,24 +43,31 @@ dependencies {
 
     implementation(project(":data"))
 
-    // Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    // App Compat
+    implementation "androidx.appcompat:appcompat:$app_compat_version"
 
-    // Moshi
-    implementation "com.squareup.moshi:moshi:$moshi_version"
-    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+    // Core
+    implementation "androidx.core:core-ktx:$core_version"
 
     // Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
-    implementation "androidx.core:core-ktx:$core_version"
-    implementation "androidx.appcompat:appcompat:$app_compat_version"
+    // Material
     implementation "com.google.android.material:material:$material_version"
 
+    // Moshi
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+
+    // Unit Testing
     testImplementation "junit:junit:$jUnit_version"
 
+    // Android Testing
     androidTestImplementation "androidx.test.ext:junit:$jUnit_android_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$expresso_version"
 }
