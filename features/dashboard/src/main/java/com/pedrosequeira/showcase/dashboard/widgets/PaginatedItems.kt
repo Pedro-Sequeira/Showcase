@@ -10,14 +10,17 @@ import androidx.paging.compose.items
 import com.pedrosequeira.showcase.domain.entities.Movie
 
 @Composable
-internal fun PaginatedItems(movies: LazyPagingItems<Movie>) {
+internal fun PaginatedItems(
+    movies: LazyPagingItems<Movie>,
+    onMovieClick: (movieId: Int) -> Unit
+) {
     LazyColumn(
         Modifier
             .fillMaxSize()
     ) {
         items(items = movies) { movie ->
             if (movie != null) {
-                MovieItem(movie)
+                MovieItem(movie, onMovieClick)
             } else {
                 Placeholder()
             }

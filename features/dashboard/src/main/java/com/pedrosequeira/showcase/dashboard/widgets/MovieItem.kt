@@ -1,5 +1,6 @@
 package com.pedrosequeira.showcase.dashboard.widgets
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
@@ -11,8 +12,10 @@ import com.pedrosequeira.showcase.commons.ui.MovieCover
 import com.pedrosequeira.showcase.domain.entities.Movie
 
 @Composable
-internal fun MovieItem(movie: Movie) {
-    Row() {
+internal fun MovieItem(movie: Movie, onMovieClick: (movieId: Int) -> Unit) {
+    Row(modifier = Modifier.clickable {
+        onMovieClick.invoke(movie.id)
+    }) {
         MovieCover(
             modifier = Modifier
                 .height(80.dp),

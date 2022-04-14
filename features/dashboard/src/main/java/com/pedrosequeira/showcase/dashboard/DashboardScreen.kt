@@ -9,12 +9,16 @@ import com.pedrosequeira.showcase.commons.ui.AlertDialog
 import com.pedrosequeira.showcase.dashboard.widgets.PaginatedItems
 
 @Composable
-fun DashboardScreen(viewModel: DashboardViewModel = hiltViewModel()) {
+fun DashboardScreen(
+    viewModel: DashboardViewModel = hiltViewModel(),
+    onMovieClick: (movieId: Int) -> Unit
+) {
+
     val movies = viewModel.movies.collectAsLazyPagingItems()
 
     Box {
         when (val state = handleUiState(movies)) {
-            is DashboardState.Data -> PaginatedItems(movies)
+            is DashboardState.Data -> PaginatedItems(movies, onMovieClick)
             is DashboardState.Error -> AlertDialog(
                 shouldShow = true,
                 text = state.errorMessage

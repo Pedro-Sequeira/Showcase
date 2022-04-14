@@ -8,7 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.pedrosequeira.showcase.commons.ui.theme.ShowcaseTheme
-import com.pedrosequeira.showcase.dashboard.DashboardScreen
+import com.pedrosequeira.showcase.navigation.ShowcaseNavGraph
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -19,13 +19,12 @@ class MainActivity @Inject constructor(
         super.onCreate(savedInstanceState)
         setContent {
             ShowcaseTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
                     MainScreen {
-                        DashboardScreen()
+                        ShowcaseNavGraph()
                     }
                 }
             }
