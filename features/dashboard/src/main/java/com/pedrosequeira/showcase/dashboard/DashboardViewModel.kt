@@ -10,5 +10,5 @@ class DashboardViewModel @Inject constructor(
     getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase
 ) : ViewModel() {
 
-    val movies = getTopRatedMoviesUseCase.getTopRatedMovies()
+    val movies = getTopRatedMoviesUseCase.invoke()
 }

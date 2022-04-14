@@ -5,6 +5,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.items
 import com.pedrosequeira.showcase.domain.entities.Movie
@@ -24,7 +25,9 @@ internal fun PaginatedItems(
             } else {
                 Placeholder()
             }
-            Divider()
+            Divider(
+                thickness = 0.5.dp
+            )
         }
     }
 }
