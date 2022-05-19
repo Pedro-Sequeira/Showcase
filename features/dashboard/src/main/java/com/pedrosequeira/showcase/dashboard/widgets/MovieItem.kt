@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.pedrosequeira.showcase.commons.ui.MovieCover
-import com.pedrosequeira.showcase.domain.entities.Movie
+import com.pedrosequeira.showcase.domain.entities.movies.Movie
 
 @Composable
 internal fun MovieItem(movie: Movie, onMovieClick: (movieId: Int) -> Unit) {

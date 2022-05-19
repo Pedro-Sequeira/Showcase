@@ -1,8 +1,10 @@
 package com.pedrosequeira.showcase.mdb.api.mappers
 
-import com.pedrosequeira.showcase.data.entities.DataMovie
-import com.pedrosequeira.showcase.data.entities.DataPagination
+import com.pedrosequeira.showcase.data.entities.commons.DataPagination
+import com.pedrosequeira.showcase.data.entities.movies.DataMovie
+import com.pedrosequeira.showcase.data.entities.movies.DataMovieDetails
 import com.pedrosequeira.showcase.mdb.api.entities.movies.ApiMovie
+import com.pedrosequeira.showcase.mdb.api.entities.movies.ApiMovieDetails
 import com.pedrosequeira.showcase.mdb.api.entities.movies.ApiPagination
 import com.pedrosequeira.showcase.mdb.api.orFalse
 import com.pedrosequeira.showcase.mdb.api.orZero
@@ -13,6 +15,31 @@ internal fun ApiPagination.toDataPagination(): DataPagination {
         results = results?.map { it.mapToDataMovie() }.orEmpty(),
         totalPages = totalPages.orZero(),
         totalResults = totalResults.orZero()
+    )
+}
+
+internal fun ApiMovieDetails.toDataMovieDetails(): DataMovieDetails {
+    return DataMovieDetails(
+        adult = adult.orFalse(),
+        backdropPath = backdropPath.orEmpty(),
+        budget = budget.orZero(),
+        homepage = homepage.orEmpty(),
+        id = id.orZero(),
+        imdbId = imdbId.orEmpty(),
+        originalLanguage = originalLanguage.orEmpty(),
+        originalTitle = originalTitle.orEmpty(),
+        overview = overview.orEmpty(),
+        popularity = popularity.orZero(),
+        posterPath = posterPath.orEmpty(),
+        releaseDate = releaseDate.orEmpty(),
+        revenue = revenue.orZero(),
+        runtime = runtime.orZero(),
+        status = status.orEmpty(),
+        tagline = tagline.orEmpty(),
+        title = title.orEmpty(),
+        video = video.orFalse(),
+        voteAverage = voteAverage.orZero(),
+        voteCount = voteCount.orZero()
     )
 }
 

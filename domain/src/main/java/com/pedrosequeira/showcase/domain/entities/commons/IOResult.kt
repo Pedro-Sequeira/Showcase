@@ -1,4 +1,4 @@
-package com.pedrosequeira.showcase.domain.entities
+package com.pedrosequeira.showcase.domain.entities.commons
 
 sealed class IOResult<out T> {
 

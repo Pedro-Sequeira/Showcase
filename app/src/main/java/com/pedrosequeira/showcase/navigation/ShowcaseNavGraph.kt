@@ -9,7 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.pedrosequeira.showcase.dashboard.DashboardScreen
-import com.pedrosequeira.showcase.moviedetails.MovieDetailsScreen
+import com.pedrosequeira.showcase.moviedetails.MovieDetails
 import com.pedrosequeira.showcase.navigation.ShowcaseDestinationsArgs.MOVIE_ID_ARG
 
 @Composable
@@ -37,7 +37,7 @@ fun ShowcaseNavGraph(
                 navArgument(MOVIE_ID_ARG) { type = NavType.IntType }
             )
         ) { entry ->
-            MovieDetailsScreen(movieId = entry.arguments?.getInt(MOVIE_ID_ARG))
+            MovieDetails(movieId = entry.arguments?.getInt(MOVIE_ID_ARG))
         }
     }
 }

@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -38,6 +40,8 @@ android {
 
 dependencies {
 
+    implementation(project(":domain"))
+
     // App Compat
     implementation "androidx.appcompat:appcompat:$app_compat_version"
 
@@ -49,6 +53,14 @@ dependencies {
 
     // Core
     implementation "androidx.core:core-ktx:$core_version"
+
+    // Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    implementation "androidx.hilt:hilt-navigation-compose:$hilt_navigation_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
     // Material
     implementation "com.google.android.material:material:$material_version"

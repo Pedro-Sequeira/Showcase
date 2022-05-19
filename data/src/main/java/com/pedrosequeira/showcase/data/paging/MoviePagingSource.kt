@@ -5,7 +5,7 @@ import androidx.paging.PagingState
 import com.pedrosequeira.showcase.data.datastores.MoviesDataStores
 import com.pedrosequeira.showcase.data.mappers.toMovie
 import com.pedrosequeira.showcase.data.repositories.MoviesRepositoryImpl.Companion.PAGE_SIZE
-import com.pedrosequeira.showcase.domain.entities.Movie
+import com.pedrosequeira.showcase.domain.entities.movies.Movie
 import java.io.IOException
 import java.net.HttpRetryException
 import javax.inject.Inject
