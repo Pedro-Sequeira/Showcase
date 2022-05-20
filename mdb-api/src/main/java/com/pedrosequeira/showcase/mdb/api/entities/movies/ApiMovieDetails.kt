@@ -11,6 +11,8 @@ data class ApiMovieDetails(
     val backdropPath: String? = null,
     @Json(name = "budget")
     val budget: Int? = null,
+    @Json(name = "genres")
+    val genres: List<ApiGenre>? = null,
     @Json(name = "homepage")
     val homepage: String? = null,
     @Json(name = "id")
@@ -45,4 +47,12 @@ data class ApiMovieDetails(
     val voteAverage: Double? = null,
     @Json(name = "vote_count")
     val voteCount: Int? = null
-)
+) {
+    @JsonClass(generateAdapter = true)
+    data class ApiGenre(
+        @Json(name = "id")
+        val id: Int? = null,
+        @Json(name = "name")
+        val name: String? = null
+    )
+}

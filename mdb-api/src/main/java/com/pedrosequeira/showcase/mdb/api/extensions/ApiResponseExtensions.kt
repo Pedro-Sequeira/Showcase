@@ -1,4 +1,4 @@
-package com.pedrosequeira.showcase.mdb.api
+package com.pedrosequeira.showcase.mdb.api.extensions
 
 fun Int?.orZero() = this ?: 0
 

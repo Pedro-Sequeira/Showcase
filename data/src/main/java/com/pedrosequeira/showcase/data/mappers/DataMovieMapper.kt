@@ -31,6 +31,7 @@ internal fun DataMovieDetails.toMovieDetails(): MovieDetails {
         adult = adult,
         backdropPath = backdropPath,
         budget = budget,
+        genres = genres.map { it.name },
         homepage = homepage,
         id = id,
         imdbId = imdbId,

@@ -6,8 +6,8 @@ import com.pedrosequeira.showcase.data.entities.movies.DataMovieDetails
 import com.pedrosequeira.showcase.mdb.api.entities.movies.ApiMovie
 import com.pedrosequeira.showcase.mdb.api.entities.movies.ApiMovieDetails
 import com.pedrosequeira.showcase.mdb.api.entities.movies.ApiPagination
-import com.pedrosequeira.showcase.mdb.api.orFalse
-import com.pedrosequeira.showcase.mdb.api.orZero
+import com.pedrosequeira.showcase.mdb.api.extensions.orFalse
+import com.pedrosequeira.showcase.mdb.api.extensions.orZero
 
 internal fun ApiPagination.toDataPagination(): DataPagination {
     return DataPagination(
@@ -23,6 +23,7 @@ internal fun ApiMovieDetails.toDataMovieDetails(): DataMovieDetails {
         adult = adult.orFalse(),
         backdropPath = backdropPath.orEmpty(),
         budget = budget.orZero(),
+        genres = genres.mapGenres(),
         homepage = homepage.orEmpty(),
         id = id.orZero(),
         imdbId = imdbId.orEmpty(),
@@ -41,6 +42,15 @@ internal fun ApiMovieDetails.toDataMovieDetails(): DataMovieDetails {
         voteAverage = voteAverage.orZero(),
         voteCount = voteCount.orZero()
     )
+}
+
+private fun List<ApiMovieDetails.ApiGenre>?.mapGenres(): List<DataMovieDetails.Genre> {
+    return this?.map {
+        DataMovieDetails.Genre(
+            it.id.orZero(),
+            it.name.orEmpty()
+        )
+    } ?: emptyList()
 }
 
 private fun ApiMovie.mapToDataMovie(): DataMovie {

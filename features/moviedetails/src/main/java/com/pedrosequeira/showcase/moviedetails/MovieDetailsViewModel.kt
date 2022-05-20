@@ -1,5 +1,6 @@
 package com.pedrosequeira.showcase.moviedetails
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pedrosequeira.showcase.domain.usecases.GetMovieDetailsUseCase
@@ -11,18 +12,23 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
+private const val MOVIE_ID_ARG = "movieId"
+
 @HiltViewModel
 internal class MovieDetailsViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase
 ) : ViewModel() {
 
     private val _uiState: MutableStateFlow<MovieDetailsState> = MutableStateFlow(Loading)
     val uiState: StateFlow<MovieDetailsState> = _uiState
 
-    fun getMovieDetails(id: Int) {
+    private val movieId = checkNotNull(savedStateHandle.get<Int>(MOVIE_ID_ARG))
+
+    init {
         viewModelScope.launch {
             _uiState.value = Loading
-            val response = getMovieDetailsUseCase.invoke(id)
+            val response = getMovieDetailsUseCase.invoke(movieId)
             _uiState.value = Data(response)
         }
     }

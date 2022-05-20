@@ -36,8 +36,8 @@ fun ShowcaseNavGraph(
             arguments = listOf(
                 navArgument(MOVIE_ID_ARG) { type = NavType.IntType }
             )
-        ) { entry ->
-            MovieDetails(movieId = entry.arguments?.getInt(MOVIE_ID_ARG))
+        ) {
+            MovieDetails()
         }
     }
 }
