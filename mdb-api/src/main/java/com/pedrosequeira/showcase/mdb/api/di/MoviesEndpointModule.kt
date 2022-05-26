@@ -2,7 +2,9 @@ package com.pedrosequeira.showcase.mdb.api.di
 
 import com.pedrosequeira.showcase.mdb.api.BuildConfig
 import com.pedrosequeira.showcase.mdb.api.addInterceptorAsFirstInChain
+import com.pedrosequeira.showcase.mdb.api.calladapter.ApiResultCallAdapterFactory
 import com.pedrosequeira.showcase.mdb.api.interceptor.AuthenticationInterceptor
+import com.pedrosequeira.showcase.mdb.api.mappers.ErrorMapper
 import com.pedrosequeira.showcase.mdb.api.service.MoviesService
 import dagger.Module
 import dagger.Provides
@@ -37,13 +39,22 @@ internal object MoviesEndpointModule {
     }
 
     @Provides
+    fun provideApiResultCallAdapterFactory(
+        errorMapper: ErrorMapper
+    ): ApiResultCallAdapterFactory {
+        return ApiResultCallAdapterFactory(errorMapper)
+    }
+
+    @Provides
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
+        callAdapterFactory: ApiResultCallAdapterFactory,
         moshiConverterFactory: MoshiConverterFactory
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
+            .addCallAdapterFactory(callAdapterFactory)
             .addConverterFactory(moshiConverterFactory)
             .build()
     }

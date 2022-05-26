@@ -6,6 +6,8 @@ import androidx.paging.PagingData
 import com.pedrosequeira.showcase.data.datastores.MoviesDataStores
 import com.pedrosequeira.showcase.data.mappers.toMovieDetails
 import com.pedrosequeira.showcase.data.paging.MoviePagingSource
+import com.pedrosequeira.showcase.domain.entities.commons.IOResult
+import com.pedrosequeira.showcase.domain.entities.commons.map
 import com.pedrosequeira.showcase.domain.entities.movies.Movie
 import com.pedrosequeira.showcase.domain.entities.movies.MovieDetails
 import com.pedrosequeira.showcase.domain.repositories.MoviesRepository
@@ -25,8 +27,10 @@ internal class MoviesRepositoryImpl @Inject constructor(
         ).flow
     }
 
-    override suspend fun getMovieDetails(id: Int): MovieDetails {
-        return moviesDataStores.remote.getMovieDetails(id).toMovieDetails()
+    override suspend fun getMovieDetails(id: Int): IOResult<MovieDetails> {
+        return moviesDataStores.remote.getMovieDetails(id).map {
+            it.toMovieDetails()
+        }
     }
 
     companion object {

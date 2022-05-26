@@ -42,6 +42,7 @@ android {
 dependencies {
 
     implementation(project(":data"))
+    implementation(project(":domain"))
 
     // App Compat
     implementation "androidx.appcompat:appcompat:$app_compat_version"

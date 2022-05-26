@@ -1,5 +1,6 @@
 package com.pedrosequeira.showcase.mdb.api.service
 
+import com.pedrosequeira.showcase.domain.entities.commons.IOResult
 import com.pedrosequeira.showcase.mdb.api.entities.movies.ApiMovieDetails
 import com.pedrosequeira.showcase.mdb.api.entities.movies.ApiPagination
 import retrofit2.http.GET
@@ -16,5 +17,5 @@ internal interface MoviesService {
     @GET("movie/{movie_id}")
     suspend fun getMovieDetails(
         @Path("movie_id") movieId: Int
-    ): ApiMovieDetails
+    ): IOResult<ApiMovieDetails>
 }

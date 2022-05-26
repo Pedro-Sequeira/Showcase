@@ -7,9 +7,9 @@ sealed class IOResult<out T> {
     sealed class Error : IOResult<Nothing>() {
 
         data class NetworkError(
-            val statusMessage: String,
-            val success: Boolean,
-            val statusCode: Int
+            val statusMessage: String = "Something went wrong.",
+            val success: Boolean = false,
+            val statusCode: Int = 500
         ) : Error()
 
         object NetworkUnavailable : Error()

@@ -3,6 +3,8 @@ package com.pedrosequeira.showcase.moviedetails
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pedrosequeira.showcase.domain.entities.commons.IOResult.Error
+import com.pedrosequeira.showcase.domain.entities.commons.IOResult.Success
 import com.pedrosequeira.showcase.domain.usecases.GetMovieDetailsUseCase
 import com.pedrosequeira.showcase.moviedetails.MovieDetailsState.Data
 import com.pedrosequeira.showcase.moviedetails.MovieDetailsState.Loading
@@ -28,8 +30,11 @@ internal class MovieDetailsViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             _uiState.value = Loading
-            val response = getMovieDetailsUseCase.invoke(movieId)
-            _uiState.value = Data(response)
+            when (val response = getMovieDetailsUseCase.invoke(movieId)) {
+                is Success -> Data(response.data)
+                is Error.NetworkError -> MovieDetailsState.Error(response.statusMessage)
+                is Error.NetworkUnavailable -> MovieDetailsState.Error("Network unavailable.")
+            }
         }
     }
 }

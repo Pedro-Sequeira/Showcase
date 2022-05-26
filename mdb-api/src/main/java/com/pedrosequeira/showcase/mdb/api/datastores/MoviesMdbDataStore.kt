@@ -3,6 +3,8 @@ package com.pedrosequeira.showcase.mdb.api.datastores
 import com.pedrosequeira.showcase.data.datastores.MoviesRemoteDataStore
 import com.pedrosequeira.showcase.data.entities.commons.DataPagination
 import com.pedrosequeira.showcase.data.entities.movies.DataMovieDetails
+import com.pedrosequeira.showcase.domain.entities.commons.IOResult
+import com.pedrosequeira.showcase.domain.entities.commons.map
 import com.pedrosequeira.showcase.mdb.api.mappers.toDataMovieDetails
 import com.pedrosequeira.showcase.mdb.api.service.MoviesEndpoint
 import com.pedrosequeira.showcase.mdb.api.mappers.toDataPagination
@@ -16,7 +18,9 @@ internal class MoviesMdbDataStore @Inject constructor(
         return moviesEndpoint.getTopRatedMovies(page).toDataPagination()
     }
 
-    override suspend fun getMovieDetails(id: Int): DataMovieDetails {
-        return moviesEndpoint.getMovieDetails(id).toDataMovieDetails()
+    override suspend fun getMovieDetails(id: Int): IOResult<DataMovieDetails> {
+        return moviesEndpoint.getMovieDetails(id).map {
+            it.toDataMovieDetails()
+        }
     }
 }
