@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'kotlinx-serialization'
 }
 
 def apiPropertiesFile = rootProject.file("api.properties")
@@ -41,6 +42,7 @@ android {
 
 dependencies {
 
+    implementation(project(":core"))
     implementation(project(":data"))
     implementation(project(":domain"))
 
@@ -54,16 +56,21 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
+    // Kotlin Result
+    implementation "com.michael-bull.kotlin-result:kotlin-result:$kotlin_result_version"
+
+    // Kotlin Serialization
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version"
+
     // Material
     implementation "com.google.android.material:material:$material_version"
 
-    // Moshi
-    implementation "com.squareup.moshi:moshi:$moshi_version"
-    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+    // OkHttp
+    implementation "com.squareup.okhttp3:okhttp:$okHttp_version"
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$retrofit_serialization_version"
 
     // Unit Testing
     testImplementation "junit:junit:$jUnit_version"

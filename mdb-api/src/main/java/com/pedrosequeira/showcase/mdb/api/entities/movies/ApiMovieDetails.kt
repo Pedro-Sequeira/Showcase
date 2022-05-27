@@ -1,58 +1,59 @@
 package com.pedrosequeira.showcase.mdb.api.entities.movies
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class ApiMovieDetails(
-    @Json(name = "adult")
+    @SerialName("adult")
     val adult: Boolean? = null,
-    @Json(name = "backdrop_path")
+    @SerialName("backdrop_path")
     val backdropPath: String? = null,
-    @Json(name = "budget")
+    @SerialName("budget")
     val budget: Int? = null,
-    @Json(name = "genres")
+    @SerialName("genres")
     val genres: List<ApiGenre>? = null,
-    @Json(name = "homepage")
+    @SerialName("homepage")
     val homepage: String? = null,
-    @Json(name = "id")
+    @SerialName("id")
     val id: Int? = null,
-    @Json(name = "imdb_id")
+    @SerialName("imdb_id")
     val imdbId: String? = null,
-    @Json(name = "original_language")
+    @SerialName("original_language")
     val originalLanguage: String? = null,
-    @Json(name = "original_title")
+    @SerialName("original_title")
     val originalTitle: String? = null,
-    @Json(name = "overview")
+    @SerialName("overview")
     val overview: String? = null,
-    @Json(name = "popularity")
+    @SerialName("popularity")
     val popularity: Double? = null,
-    @Json(name = "poster_path")
+    @SerialName("poster_path")
     val posterPath: String? = null,
-    @Json(name = "release_date")
+    @SerialName("release_date")
     val releaseDate: String? = null,
-    @Json(name = "revenue")
+    @SerialName("revenue")
     val revenue: Int? = null,
-    @Json(name = "runtime")
+    @SerialName("runtime")
     val runtime: Int? = null,
-    @Json(name = "status")
+    @SerialName("status")
     val status: String? = null,
-    @Json(name = "tagline")
+    @SerialName("tagline")
     val tagline: String? = null,
-    @Json(name = "title")
+    @SerialName("title")
     val title: String? = null,
-    @Json(name = "video")
+    @SerialName("video")
     val video: Boolean? = null,
-    @Json(name = "vote_average")
+    @SerialName("vote_average")
     val voteAverage: Double? = null,
-    @Json(name = "vote_count")
+    @SerialName("vote_count")
     val voteCount: Int? = null
 ) {
-    @JsonClass(generateAdapter = true)
+
+    @Serializable
     data class ApiGenre(
-        @Json(name = "id")
+        @SerialName("id")
         val id: Int? = null,
-        @Json(name = "name")
+        @SerialName("name")
         val name: String? = null
     )
 }

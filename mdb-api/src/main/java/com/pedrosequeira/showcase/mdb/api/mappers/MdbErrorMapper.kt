@@ -1,27 +1,18 @@
 package com.pedrosequeira.showcase.mdb.api.mappers
 
-import com.pedrosequeira.showcase.domain.entities.commons.IOResult
 import com.pedrosequeira.showcase.mdb.api.entities.ApiError
-import com.pedrosequeira.showcase.mdb.api.extensions.orFalse
-import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.adapter
 import javax.inject.Inject
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import okhttp3.ResponseBody
 
-@OptIn(ExperimentalStdlibApi::class)
 internal class MdbErrorMapper @Inject constructor() : ErrorMapper {
 
-    override fun mapToDomain(responseBody: ResponseBody): IOResult.Error.NetworkError? {
+    override fun extractErrorMessage(responseBody: ResponseBody): String {
         val json: String = responseBody.string()
-        val moshi: Moshi = Moshi.Builder().build()
-        val jsonAdapter: JsonAdapter<ApiError> = moshi.adapter()
-        return jsonAdapter.fromJson(json)?.run {
-            IOResult.Error.NetworkError(
-                statusMessage = statusMessage.orEmpty(),
-                success = success.orFalse(),
-                statusCode = statusCode ?: 500
-            )
+        val apiError = Json.decodeFromString<ApiError>(json)
+        with(apiError) {
+            return statusMessage.orEmpty()
         }
     }
 }

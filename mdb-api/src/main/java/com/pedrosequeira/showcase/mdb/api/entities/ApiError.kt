@@ -1,14 +1,14 @@
 package com.pedrosequeira.showcase.mdb.api.entities
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class ApiError(
-    @Json(name = "status_message")
+    @SerialName("status_message")
     val statusMessage: String? = null,
-    @Json(name = "success")
+    @SerialName("success")
     val success: Boolean? = null,
-    @Json(name = "status_code")
+    @SerialName("status_code")
     val statusCode: Int? = null
 )

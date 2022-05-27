@@ -1,7 +1,6 @@
 package com.pedrosequeira.showcase.mdb.api.service
 
-import com.pedrosequeira.showcase.domain.entities.commons.IOResult
-import com.pedrosequeira.showcase.domain.entities.commons.map
+import com.pedrosequeira.showcase.mdb.api.ApiResult
 import com.pedrosequeira.showcase.mdb.api.entities.movies.ApiMovieDetails
 import com.pedrosequeira.showcase.mdb.api.entities.movies.ApiPagination
 import javax.inject.Inject
@@ -14,7 +13,7 @@ internal class MoviesEndpointImpl @Inject constructor(
         return service.getTopRated(page)
     }
 
-    override suspend fun getMovieDetails(id: Int): IOResult<ApiMovieDetails> {
+    override suspend fun getMovieDetails(id: Int): ApiResult<ApiMovieDetails> {
         return service.getMovieDetails(id)
     }
 }

@@ -1,21 +1,20 @@
 package com.pedrosequeira.showcase.mdb.api.entities.movies
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-@JsonClass(generateAdapter = true)
-
+@Serializable
 data class ApiPagination(
 
-    @Json(name = "page")
+    @SerialName("page")
     val page: Int? = null,
 
-    @Json(name = "results")
+    @SerialName("results")
     val results: List<ApiMovie>? = null,
 
-    @Json(name = "total_pages")
+    @SerialName("total_pages")
     val totalPages: Int? = null,
 
-    @Json(name = "total_results")
+    @SerialName("total_results")
     val totalResults: Int? = null
 )

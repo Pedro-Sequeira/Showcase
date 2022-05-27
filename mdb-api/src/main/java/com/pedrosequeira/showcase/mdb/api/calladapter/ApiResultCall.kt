@@ -1,8 +1,9 @@
 package com.pedrosequeira.showcase.mdb.api.calladapter
 
-import com.pedrosequeira.showcase.domain.entities.commons.IOResult
-import com.pedrosequeira.showcase.domain.entities.commons.IOResult.Error
-import com.pedrosequeira.showcase.domain.entities.commons.IOResult.Success
+import com.github.michaelbull.result.Err
+import com.github.michaelbull.result.Ok
+import com.pedrosequeira.showcase.mdb.api.ApiResult
+import com.pedrosequeira.showcase.mdb.api.entities.Error
 import com.pedrosequeira.showcase.mdb.api.mappers.ErrorMapper
 import java.io.IOException
 import java.lang.reflect.Type
@@ -16,54 +17,57 @@ internal class ApiResultCall<T>(
     private val delegate: Call<T>,
     private val successType: Type,
     private val errorMapper: ErrorMapper
-) : Call<IOResult<T>> {
+) : Call<ApiResult<T>> {
 
-    override fun enqueue(callback: Callback<IOResult<T>>) {
+    override fun enqueue(callback: Callback<ApiResult<T>>) {
         delegate.enqueue(
             onResponse = { _, response ->
                 callback.onResponse(
                     this,
-                    Response.success(response.toIoResult())
+                    Response.success(response.toApiResult())
                 )
             },
             onFailure = { _, throwable ->
                 callback.onResponse(
                     this,
-                    Response.success(throwable.toIoResult())
+                    Response.success(throwable.toApiResult())
                 )
             }
         )
     }
 
     @Suppress("UNCHECKED_CAST")
-    private fun Response<T>.toIoResult(): IOResult<T> {
+    private fun Response<T>.toApiResult(): ApiResult<T> {
         if (!isSuccessful) {
-            return errorBody()?.let {
-                errorMapper.mapToDomain(it)
-            } ?: Error.NetworkError()
+            val httpCode = code()
+            val message = errorBody()?.let { errorMapper.extractErrorMessage(it) } ?: ""
+
+            return Err(Error.HttpError(httpCode, message))
         }
 
-        body()?.let { return Success(it) }
+        body()?.let { return Ok(it) }
 
         return if (successType == Unit::class.java) {
-            (Success(Unit) as IOResult<T>)
+            (Ok(Unit) as ApiResult<T>)
         } else {
-            Error.NetworkError("The response body was null.")
+            Err(Error.UnknownError(IllegalStateException("The response body was null.")))
         }
     }
 
-    private fun <T> Throwable.toIoResult(): IOResult<T> {
-        return when (this) {
-            is IOException -> Error.NetworkUnavailable
-            else -> Error.NetworkError()
-        }
+    private fun <T> Throwable.toApiResult(): ApiResult<T> {
+        return Err(
+            when (this) {
+                is IOException -> Error.NetworkError(this)
+                else -> Error.UnknownError(this)
+            }
+        )
     }
 
-    override fun clone(): Call<IOResult<T>> {
+    override fun clone(): Call<ApiResult<T>> {
         return ApiResultCall(delegate.clone(), successType, errorMapper)
     }
 
-    override fun execute(): Response<IOResult<T>> {
+    override fun execute(): Response<ApiResult<T>> {
         throw UnsupportedOperationException()
     }
 

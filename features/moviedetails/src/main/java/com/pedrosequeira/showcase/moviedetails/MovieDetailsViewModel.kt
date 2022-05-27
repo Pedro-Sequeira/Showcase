@@ -30,7 +30,7 @@ internal class MovieDetailsViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             _uiState.value = Loading
-            when (val response = getMovieDetailsUseCase.invoke(movieId)) {
+            _uiState.value = when (val response = getMovieDetailsUseCase.invoke(movieId)) {
                 is Success -> Data(response.data)
                 is Error.NetworkError -> MovieDetailsState.Error(response.statusMessage)
                 is Error.NetworkUnavailable -> MovieDetailsState.Error("Network unavailable.")

@@ -11,7 +11,7 @@ class AuthenticationInterceptor @Inject constructor() : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val authenticatedUrl = chain
             .request()
-            .url()
+            .url
             .newBuilder()
             .addQueryParameter(API_KEY, BuildConfig.API_KEY)
             .build()

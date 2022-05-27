@@ -1,36 +1,36 @@
 package com.pedrosequeira.showcase.mdb.api.entities.movies
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class ApiMovie(
-    @Json(name = "adult")
+    @SerialName("adult")
     val adult: Boolean? = null,
-    @Json(name = "backdrop_path")
+    @SerialName("backdrop_path")
     val backdropPath: String? = null,
-    @Json(name = "genre_ids")
+    @SerialName("genre_ids")
     val genreIds: List<Int>? = null,
-    @Json(name = "id")
+    @SerialName("id")
     val id: Int? = null,
-    @Json(name = "original_language")
+    @SerialName("original_language")
     val originalLanguage: String? = null,
-    @Json(name = "original_title")
+    @SerialName("original_title")
     val originalTitle: String? = null,
-    @Json(name = "overview")
+    @SerialName("overview")
     val overview: String? = null,
-    @Json(name = "popularity")
+    @SerialName("popularity")
     val popularity: Double? = null,
-    @Json(name = "poster_path")
+    @SerialName("poster_path")
     val posterPath: String? = null,
-    @Json(name = "release_date")
+    @SerialName("release_date")
     val releaseDate: String? = null,
-    @Json(name = "title")
+    @SerialName("title")
     val title: String? = null,
-    @Json(name = "video")
+    @SerialName("video")
     val hasVideo: Boolean? = null,
-    @Json(name = "vote_average")
+    @SerialName("vote_average")
     val voteAverage: Double? = null,
-    @Json(name = "vote_count")
+    @SerialName("vote_count")
     val voteCount: Int? = null
 )
