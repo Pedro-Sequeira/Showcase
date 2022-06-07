@@ -1,10 +1,10 @@
-package com.pedrosequeira.showcase.data.entities.movies
+package com.pedrosequeira.showcase.domain.movies
 
-data class DataMovieDetails(
+data class MovieDetails(
     val adult: Boolean,
     val backdropPath: String,
     val budget: Int,
-    val genres: List<Genre>,
+    val genres: List<String>,
     val homepage: String,
     val id: Int,
     val imdbId: String,
@@ -22,9 +22,4 @@ data class DataMovieDetails(
     val video: Boolean,
     val voteAverage: Double,
     val voteCount: Int
-) {
-    data class Genre(
-        val id: Int,
-        val name: String
-    )
-}
+)

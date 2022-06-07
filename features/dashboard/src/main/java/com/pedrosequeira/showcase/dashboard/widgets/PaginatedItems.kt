@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.items
-import com.pedrosequeira.showcase.domain.entities.movies.Movie
+import com.pedrosequeira.showcase.domain.movies.Movie
 
 @Composable
 internal fun PaginatedItems(

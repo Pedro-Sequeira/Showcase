@@ -1,6 +1,6 @@
-package com.pedrosequeira.showcase.domain.entities.movies
+package com.pedrosequeira.showcase.data.movies
 
-data class Movie(
+data class DataMovie(
     val adult: Boolean,
     val backdropPath: String,
     val genreIds: List<Int>,

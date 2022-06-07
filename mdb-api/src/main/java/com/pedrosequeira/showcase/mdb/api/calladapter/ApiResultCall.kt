@@ -4,7 +4,7 @@ import com.github.michaelbull.result.Err
 import com.github.michaelbull.result.Ok
 import com.pedrosequeira.showcase.mdb.api.ApiResult
 import com.pedrosequeira.showcase.mdb.api.entities.Error
-import com.pedrosequeira.showcase.mdb.api.mappers.ErrorMapper
+import com.pedrosequeira.showcase.mdb.api.mappers.MessageExtractor
 import java.io.IOException
 import java.lang.reflect.Type
 import okhttp3.Request
@@ -16,7 +16,7 @@ import retrofit2.Response
 internal class ApiResultCall<T>(
     private val delegate: Call<T>,
     private val successType: Type,
-    private val errorMapper: ErrorMapper
+    private val messageExtractor: MessageExtractor
 ) : Call<ApiResult<T>> {
 
     override fun enqueue(callback: Callback<ApiResult<T>>) {
@@ -40,7 +40,7 @@ internal class ApiResultCall<T>(
     private fun Response<T>.toApiResult(): ApiResult<T> {
         if (!isSuccessful) {
             val httpCode = code()
-            val message = errorBody()?.let { errorMapper.extractErrorMessage(it) } ?: ""
+            val message = errorBody()?.let { messageExtractor.extractErrorMessage(it) } ?: ""
 
             return Err(Error.HttpError(httpCode, message))
         }
@@ -64,7 +64,7 @@ internal class ApiResultCall<T>(
     }
 
     override fun clone(): Call<ApiResult<T>> {
-        return ApiResultCall(delegate.clone(), successType, errorMapper)
+        return ApiResultCall(delegate.clone(), successType, messageExtractor)
     }
 
     override fun execute(): Response<ApiResult<T>> {

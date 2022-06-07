@@ -1,6 +1,6 @@
-package com.pedrosequeira.showcase.data.entities.commons
+package com.pedrosequeira.showcase.data.commons.entities
 
-import com.pedrosequeira.showcase.data.entities.movies.DataMovie
+import com.pedrosequeira.showcase.data.movies.DataMovie
 
 data class DataPagination(
     val page: Int,

@@ -1,4 +1,4 @@
-package com.pedrosequeira.showcase.domain.entities.commons
+package com.pedrosequeira.showcase.domain.commons.entities
 
 inline fun <T, R> IOResult<T>.map(transform: (value: T) -> R): IOResult<R> =
     when (this) {

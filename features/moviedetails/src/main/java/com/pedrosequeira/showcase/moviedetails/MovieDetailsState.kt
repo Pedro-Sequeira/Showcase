@@ -1,12 +1,9 @@
 package com.pedrosequeira.showcase.moviedetails
 
-import com.pedrosequeira.showcase.domain.entities.movies.MovieDetails
+import com.pedrosequeira.showcase.domain.movies.MovieDetails
 
-internal sealed class MovieDetailsState {
-
-    object Loading : MovieDetailsState()
-
-    data class Data(val details: MovieDetails): MovieDetailsState()
-
-    data class Error(val message: String): MovieDetailsState()
-}
+data class MovieDetailsState(
+    val movieDetails: MovieDetails? = null,
+    val errorMessage: String? = null,
+    val isLoading: Boolean = false
+)

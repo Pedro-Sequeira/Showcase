@@ -47,6 +47,9 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
+    // Kotlin Result
+    implementation "com.michael-bull.kotlin-result:kotlin-result:$kotlin_result_version"
+
     // Material
     implementation "com.google.android.material:material:$material_version"
 

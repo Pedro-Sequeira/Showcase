@@ -5,7 +5,7 @@ import com.pedrosequeira.showcase.mdb.api.addInterceptorAsFirstInChain
 import com.pedrosequeira.showcase.mdb.api.calladapter.ApiResultCallAdapterFactory
 import com.pedrosequeira.showcase.mdb.api.extensions.asConverterFactory
 import com.pedrosequeira.showcase.mdb.api.interceptor.AuthenticationInterceptor
-import com.pedrosequeira.showcase.mdb.api.mappers.ErrorMapper
+import com.pedrosequeira.showcase.mdb.api.mappers.MessageExtractor
 import com.pedrosequeira.showcase.mdb.api.service.MoviesService
 import dagger.Module
 import dagger.Provides
@@ -37,9 +37,9 @@ internal object MoviesEndpointModule {
 
     @Provides
     fun provideApiResultCallAdapterFactory(
-        errorMapper: ErrorMapper
+        messageExtractor: MessageExtractor
     ): ApiResultCallAdapterFactory {
-        return ApiResultCallAdapterFactory(errorMapper)
+        return ApiResultCallAdapterFactory(messageExtractor)
     }
 
     @Provides

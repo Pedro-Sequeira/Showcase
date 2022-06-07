@@ -2,7 +2,7 @@ package com.pedrosequeira.showcase.mdb.api.calladapter
 
 import com.github.michaelbull.result.Result
 import com.pedrosequeira.showcase.mdb.api.entities.Error
-import com.pedrosequeira.showcase.mdb.api.mappers.ErrorMapper
+import com.pedrosequeira.showcase.mdb.api.mappers.MessageExtractor
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 import retrofit2.Call
@@ -14,7 +14,7 @@ private const val PARAM_UPPER_BOUND_INDEX_SUCCESS = 0
 private const val PARAM_UPPER_BOUND_INDEX_ERROR = 1
 
 internal class ApiResultCallAdapterFactory(
-    private val errorMapper: ErrorMapper
+    private val messageExtractor: MessageExtractor
 ) : CallAdapter.Factory() {
 
     override fun get(
@@ -33,6 +33,6 @@ internal class ApiResultCallAdapterFactory(
         if (getRawType(errorType) != Error::class.java) return null
 
         val successType = getParameterUpperBound(PARAM_UPPER_BOUND_INDEX_SUCCESS, apiResultType)
-        return ApiResultCallAdapter<Any>(successType, errorMapper)
+        return ApiResultCallAdapter<Any>(successType, messageExtractor)
     }
 }

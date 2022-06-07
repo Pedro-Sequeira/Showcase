@@ -1,6 +1,6 @@
-package com.pedrosequeira.showcase.domain.entities.commons
+package com.pedrosequeira.showcase.domain.commons.entities
 
-import com.pedrosequeira.showcase.domain.entities.movies.Movie
+import com.pedrosequeira.showcase.domain.movies.Movie
 
 data class Pagination(
     val page: Int,

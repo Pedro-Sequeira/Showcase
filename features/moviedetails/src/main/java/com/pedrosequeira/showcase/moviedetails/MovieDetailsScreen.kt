@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.pedrosequeira.showcase.core.formatters.formatRunTime
 import com.pedrosequeira.showcase.core.formatters.getYearReleaseDate
-import com.pedrosequeira.showcase.domain.entities.movies.MovieDetails
+import com.pedrosequeira.showcase.domain.movies.MovieDetails
 
 @Composable
 fun MovieDetails(
@@ -27,10 +27,12 @@ fun MovieDetails(
 private fun MovieDetailsScreen(
     viewModel: MovieDetailsViewModel = hiltViewModel()
 ) {
-    when (val state = viewModel.uiState.collectAsState().value) {
-        is MovieDetailsState.Loading -> Unit
-        is MovieDetailsState.Data -> MovieDetails(state.details)
-        is MovieDetailsState.Error -> ErrorDetails(state)
+    val state = viewModel.uiState.collectAsState().value
+    if (state.movieDetails != null) {
+        MovieDetails(state.movieDetails)
+    }
+    if (state.errorMessage != null) {
+        ErrorDetails(state.errorMessage)
     }
 }
 
@@ -49,14 +51,14 @@ private fun MovieDetails(movie: MovieDetails) {
 }
 
 @Composable
-private fun ErrorDetails(state: MovieDetailsState.Error) {
+private fun ErrorDetails(errorMessage: String) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .padding(20.dp)
     ) {
         Text(
-            text = state.message,
+            text = errorMessage,
             modifier = Modifier.align(Alignment.Center),
             textAlign = TextAlign.Center
         )

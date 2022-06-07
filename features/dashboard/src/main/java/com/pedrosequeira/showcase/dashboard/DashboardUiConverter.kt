@@ -2,7 +2,7 @@ package com.pedrosequeira.showcase.dashboard
 
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
-import com.pedrosequeira.showcase.domain.entities.movies.Movie
+import com.pedrosequeira.showcase.domain.movies.Movie
 
 internal fun handleUiState(state: LazyPagingItems<Movie>): DashboardState {
     return when (val refreshState = state.loadState.refresh) {

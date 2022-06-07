@@ -1,12 +1,12 @@
 package com.pedrosequeira.showcase.data.datastores
 
-import com.pedrosequeira.showcase.data.entities.commons.DataPagination
-import com.pedrosequeira.showcase.data.entities.movies.DataMovieDetails
-import com.pedrosequeira.showcase.domain.entities.commons.IOResult
+import com.pedrosequeira.showcase.data.commons.DataResult
+import com.pedrosequeira.showcase.data.commons.entities.DataPagination
+import com.pedrosequeira.showcase.data.movies.DataMovieDetails
 
 interface MoviesRemoteDataStore {
 
     suspend fun getTopRatedMovies(page: Int): DataPagination
 
-    suspend fun getMovieDetails(id: Int): IOResult<DataMovieDetails>
+    suspend fun getMovieDetails(id: Int): DataResult<DataMovieDetails>
 }
