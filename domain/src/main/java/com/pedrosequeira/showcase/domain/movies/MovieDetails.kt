@@ -22,4 +22,6 @@ data class MovieDetails(
     val video: Boolean,
     val voteAverage: Double,
     val voteCount: Int
-)
+) {
+    companion object
+}

@@ -8,11 +8,11 @@ internal class MovieDetailsReducer @Inject constructor(
     private val errorMapper: ErrorMapper
 ) {
     fun mapToSuccessState(state: MovieDetailsState, details: MovieDetails?) =
-        state.copy(isLoading = false, movieDetails = details)
+        state.copy(movieDetails = details)
 
     fun changeLoadingStateTo(state: MovieDetailsState, isLoading: Boolean) =
         state.copy(isLoading = isLoading)
 
     fun mapToErrorState(state: MovieDetailsState, it: Throwable) =
-        state.copy(isLoading = false, errorMessage = errorMapper.mapToMessage(it))
+        state.copy(errorMessage = errorMapper.mapToMessage(it))
 }

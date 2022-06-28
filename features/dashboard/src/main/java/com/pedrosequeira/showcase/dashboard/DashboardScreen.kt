@@ -9,7 +9,9 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.pedrosequeira.showcase.commons.ui.AlertDialog
-import com.pedrosequeira.showcase.dashboard.DashboardState.*
+import com.pedrosequeira.showcase.dashboard.DashboardState.Data
+import com.pedrosequeira.showcase.dashboard.DashboardState.Error
+import com.pedrosequeira.showcase.dashboard.DashboardState.Loading
 import com.pedrosequeira.showcase.dashboard.widgets.PaginatedItems
 
 @Composable

@@ -66,6 +66,9 @@ dependencies {
     // Material
     implementation "com.google.android.material:material:$material_version"
 
+    // MockK
+    testImplementation "io.mockk:mockk:$mockK_version"
+
     // Unit Testing
     testImplementation "junit:junit:$jUnit_version"
 
