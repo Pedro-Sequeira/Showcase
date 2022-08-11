@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -25,6 +26,7 @@ import com.pedrosequeira.showcase.domain.movies.Movie
 internal fun MovieItem(movie: Movie, onMovieClick: (movieId: Int) -> Unit) {
     Row(
         modifier = Modifier
+            .fillMaxWidth()
             .clickable {
                 onMovieClick.invoke(movie.id)
             }

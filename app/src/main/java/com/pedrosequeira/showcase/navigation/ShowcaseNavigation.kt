@@ -24,6 +24,8 @@ class ShowcaseNavigationActions(private val navController: NavHostController) {
     fun navigateToMovieDetails(movieId: Int) {
         navController.navigate(
             route = "$DETAILS_SCREEN/$movieId"
-        )
+        ) {
+            restoreState = true
+        }
     }
 }

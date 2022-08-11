@@ -11,7 +11,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onCompletion
@@ -30,13 +29,11 @@ internal class MovieDetailsViewModel @Inject constructor(
 
     private var getMovieDetailsJob: Job? = null
 
-    private val _uiState = MutableStateFlow(MovieDetailsState())
+    var uiState = MutableStateFlow(MovieDetailsState())
+        private set
 
     private val currentUiState: MovieDetailsState
-        get() = _uiState.value
-
-    val uiState: StateFlow<MovieDetailsState>
-        get() = _uiState
+        get() = uiState.value
 
     private val movieId = checkNotNull(savedStateHandle.get<Int>(MOVIE_ID_ARG))
 
@@ -57,7 +54,7 @@ internal class MovieDetailsViewModel @Inject constructor(
                 .onCompletion {
                     emit(reducer.changeLoadingStateTo(currentUiState, false))
                 }
-                .collect { _uiState.value = it }
+                .collect { uiState.value = it }
         }
     }
 }
