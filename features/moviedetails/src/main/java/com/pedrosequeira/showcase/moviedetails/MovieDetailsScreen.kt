@@ -7,12 +7,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.pedrosequeira.showcase.core.formatters.formatRunTime
 import com.pedrosequeira.showcase.core.formatters.getYearReleaseDate
 import com.pedrosequeira.showcase.domain.movies.MovieDetails
@@ -23,11 +24,12 @@ fun MovieDetails(
     MovieDetailsScreen()
 }
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 private fun MovieDetailsScreen(
     viewModel: MovieDetailsViewModel = hiltViewModel()
 ) {
-    val state = viewModel.uiState.collectAsState().value
+    val state = viewModel.uiState.collectAsStateWithLifecycle().value
     if (state.movieDetails != null) {
         MovieDetails(state.movieDetails)
     }
