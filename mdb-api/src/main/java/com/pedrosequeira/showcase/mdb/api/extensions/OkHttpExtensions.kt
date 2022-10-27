@@ -1,4 +1,4 @@
-package com.pedrosequeira.showcase.mdb.api
+package com.pedrosequeira.showcase.mdb.api.extensions
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

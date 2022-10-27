@@ -1,8 +1,8 @@
 package com.pedrosequeira.showcase.mdb.api.di
 
 import com.pedrosequeira.showcase.mdb.api.BuildConfig
-import com.pedrosequeira.showcase.mdb.api.addInterceptorAsFirstInChain
 import com.pedrosequeira.showcase.mdb.api.calladapter.ApiResultCallAdapterFactory
+import com.pedrosequeira.showcase.mdb.api.extensions.addInterceptorAsFirstInChain
 import com.pedrosequeira.showcase.mdb.api.extensions.asConverterFactory
 import com.pedrosequeira.showcase.mdb.api.interceptor.AuthenticationInterceptor
 import com.pedrosequeira.showcase.mdb.api.mappers.MessageExtractor
@@ -23,7 +23,6 @@ internal object MoviesEndpointModule {
     fun provideMoviesService(retrofit: Retrofit): MoviesService {
         return retrofit.create(MoviesService::class.java)
     }
-
 
     @Provides
     fun provideOkHttpClient(
